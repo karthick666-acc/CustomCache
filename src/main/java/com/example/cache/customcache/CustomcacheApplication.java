@@ -50,11 +50,7 @@ public class CustomcacheApplication {
 			
 			logger.info("Clearing cache");
 			
-			employeeService.clearCache();
-			
-			logger.info("Retrieving Employee details");
-			
-			employeeService.getEmployee(new EmployeeEntity( "Karthick", 44));
+			employeeService.clearCache();			
 			
 		}catch (Exception e) {
 			logger.info("",e.getCause());

@@ -2,16 +2,20 @@ package com.example.cache.customcache.repository;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.cache.customcache.entity.EmployeeEntity;
+import com.example.cache.customcache.service.EmployeeService;
 import com.example.cache.customcache.utils.EmployeeRowMapper;
 
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository{
 	
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeRepositoryImpl.class);
 	
 	private final JdbcTemplate jdbcTemplate;	
 	
@@ -24,6 +28,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 	@SuppressWarnings("deprecation")
 	@Override
 	public EmployeeEntity getEmployee(int empId) {
+		logger.info("empId ", empId);
 			   String sql = " SELECT id, name, emp_nbr, level, designation  FROM employee Where "+ 
 			           		"id = ?";
 			   return jdbcTemplate.queryForObject(sql,new Object[]{empId},new EmployeeRowMapper());

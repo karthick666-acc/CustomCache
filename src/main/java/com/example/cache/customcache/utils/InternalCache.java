@@ -59,7 +59,7 @@ public class InternalCache {
 		logger.info("cacheMap  Before get operation: " + cacheMap);
 		logger.info("sortingList Before get operation: " + sortingList);
 		try {
-			if (!cacheMap.containsKey(key)) {
+			if (cacheMap.isEmpty() || !cacheMap.containsKey(key)) {
 				return null;
 			}
 			sortingList.remove(Integer.valueOf(key));
