@@ -44,7 +44,7 @@ public class EmployeeServiceImpl  {
 			throw new EmployeeRetrieveException("Failed to retrieve Employee", e);
 		}
 		
-		logger.info("getEmployee method :"+ employee.toString());
+	//	logger.info("getEmployee method :"+ employee.toString());
 		
 		return employee;
 		
