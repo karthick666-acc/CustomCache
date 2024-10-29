@@ -9,8 +9,20 @@ public class EmployeeEntity {
 	private String empdesignation;
 	
 	
+	public EmployeeEntity( String empName, int empNbr) {
+		super();
+		this.empName = empName;
+		this.empNbr = empNbr;
+	}
 	
-		
+	public EmployeeEntity( String empName, int empNbr, int empLevel, String empdesignation) {
+		super();
+		this.empName = empName;
+		this.empNbr = empNbr;
+		this.empLevel = empLevel;
+		this.empdesignation = empdesignation;
+	}
+			
 	public EmployeeEntity(int id, String empName, int empNbr, int empLevel, String empdesignation) {
 		super();
 		this.id = id;
@@ -24,8 +36,8 @@ public class EmployeeEntity {
 		return id;
 	}	
 	
-	public int setId() {
-		return this.hashCode();
+	public void setId(int id) {
+		this.id = id;
 	}	
 	public String getEmpName() {
 		return empName;
@@ -70,6 +82,12 @@ public class EmployeeEntity {
         if (this.empNbr != emp.empNbr) return false;
         return empName != null ? empName.equals(emp.empName) : emp.empName == null;
     }
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [id=" + id + ", empName=" + empName + ", empNbr=" + empNbr + ", empLevel=" + empLevel
+				+ ", empdesignation=" + empdesignation + "]";
+	}
 	
 	
 

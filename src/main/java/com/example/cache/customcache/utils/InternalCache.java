@@ -4,64 +4,101 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.cache.customcache.entity.EmployeeEntity;
+import com.example.cache.customcache.service.EmployeeService;
 
 public class InternalCache {
-	
-	 private int capacity;
-	 private Map<Integer, EmployeeEntity> cacheMap;
-	 private LinkedList<Integer> sortingList;
-	 
-	 public InternalCache(int capacity) {
-	        this.capacity = capacity;
-	        this.cacheMap = new HashMap<>();
-	        this.sortingList = new LinkedList<>();
-	 }
-	 
-	 public void put(int key, EmployeeEntity employeeEntity) {
-		 // Updating Existing key
-		 if (cacheMap.containsKey(key)) {	          
-	            cacheMap.put(key, employeeEntity);	          
-	            sortingList.remove(Integer.valueOf(key));
-	     } else {	      
-	    	 // Adding new key
-	            if (cacheMap.size() >= capacity) {
-	                int leastUsedKey = sortingList.removeLast();
-	                cacheMap.remove(leastUsedKey);
-	            }
-	            cacheMap.put(key, employeeEntity);
-	     }
-		 sortingList.addFirst(key);
-		 
-	 }
-	 
-	 public EmployeeEntity get(int key) {
-		 
-	        if (!cacheMap.containsKey(key)) {
-	            return null;
-	        }
-	        sortingList.remove(Integer.valueOf(key));
 
-	        sortingList.addFirst(key);
+	private static final Logger logger = LoggerFactory.getLogger(InternalCache.class);
 
-	        return cacheMap.get(key);
-	    }
-	 
-	 public void remove(int key) {
-		 
-	        if (cacheMap.containsKey(key)) {	        	
-	        	sortingList.remove(Integer.valueOf(key));
-	 	        cacheMap.remove(key);
-	        }
-	       
-	    }
-	 
-	 public void clear() {
-		 
-	        if (!cacheMap.isEmpty()) {	        	
-	 	        cacheMap.clear();
-	        }
-	       
-	    }
+	private int capacity;
+	private Map<Integer, EmployeeEntity> cacheMap;
+	private LinkedList<Integer> sortingList;
+
+	public InternalCache(int capacity) {
+		this.capacity = capacity;
+		this.cacheMap = new HashMap<>();
+		this.sortingList = new LinkedList<>();
+	}
+
+	public void put(int key, EmployeeEntity employeeEntity) throws CustomException {
+		// Updating Existing key
+
+		logger.info("cacheMap  Before put operation: " + cacheMap);
+		logger.info("sortingList Before put operation: " + sortingList);
+		try {
+			if (cacheMap.containsKey(key)) {
+				logger.info("Updating key");
+				cacheMap.put(key, employeeEntity);
+				sortingList.remove(Integer.valueOf(key));
+			} else {
+				// Adding new key
+				logger.info("Adding new key");
+				if (cacheMap.size() >= capacity) {
+					int leastUsedKey = sortingList.removeLast();
+					cacheMap.remove(leastUsedKey);
+				}
+				cacheMap.put(key, employeeEntity);
+			}
+			sortingList.addFirst(key);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new CustomException("Put Function failed", e);
+		}
+
+		logger.info("cacheMap  After put operation: " + cacheMap);
+		logger.info("sortingList After put operation: " + sortingList);
+
+	}
+
+	public EmployeeEntity get(int key) throws CustomException {
+
+		logger.info("cacheMap  Before get operation: " + cacheMap);
+		logger.info("sortingList Before get operation: " + sortingList);
+		try {
+			if (!cacheMap.containsKey(key)) {
+				return null;
+			}
+			sortingList.remove(Integer.valueOf(key));
+
+			sortingList.addFirst(key);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new CustomException("Get Function failed", e);
+		}
+		logger.info("cacheMap  after get operation: " + cacheMap);
+		logger.info("sortingList after get operation: " + sortingList);
+
+		return cacheMap.get(key);
+	}
+
+	public void remove(int key) {
+		logger.info("cacheMap  before remove operation: " + cacheMap);
+		logger.info("sortingList before remove operation: " + sortingList);
+		if (cacheMap.containsKey(key)) {
+			sortingList.remove(Integer.valueOf(key));
+			cacheMap.remove(key);
+		}
+
+		logger.info("cacheMap  after remove operation: " + cacheMap);
+		logger.info("sortingList after remove operation: " + sortingList);
+
+	}
+
+	public void clear() {
+		logger.info("cacheMap  before clear operation: " + cacheMap);
+		logger.info("sortingList before clear operation: " + sortingList);
+		if (!cacheMap.isEmpty()) {
+			cacheMap.clear();
+			sortingList.clear();
+		}
+
+		logger.info("cacheMap  before after operation: " + cacheMap);
+		logger.info("sortingList before after operation: " + sortingList);
+
+	}
 
 }
