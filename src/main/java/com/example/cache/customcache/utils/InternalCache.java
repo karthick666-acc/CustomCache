@@ -24,6 +24,13 @@ public class InternalCache {
 		this.sortingList = new LinkedList<>();
 	}
 
+	/**
+	 * A new key and value will be added and the key will be placed in the first index of Linked list
+	 * If Map exceed its its size, least used value will be removed
+	 * @param key
+	 * @param employeeEntity
+	 * @throws CustomException
+	 */
 	public void put(int key, EmployeeEntity employeeEntity) throws CustomException {
 		// Updating Existing key
 
@@ -54,6 +61,12 @@ public class InternalCache {
 
 	}
 
+	/**
+	 *  Value will be returned for the given key and the key will be placed in the first index of Linked list
+	 * @param key
+	 * @return EmployeeEntity
+	 * @throws CustomException
+	 */
 	public EmployeeEntity get(int key) throws CustomException {
 
 		logger.info("cacheMap  Before get operation: " + cacheMap);
@@ -75,6 +88,10 @@ public class InternalCache {
 		return cacheMap.get(key);
 	}
 
+	/**
+	 * Key and value will be removed from both List and Map
+	 * @param key
+	 */
 	public void remove(int key) {
 		logger.info("cacheMap  before remove operation: " + cacheMap);
 		logger.info("sortingList before remove operation: " + sortingList);
@@ -88,6 +105,9 @@ public class InternalCache {
 
 	}
 
+	/**
+	 * Map and List will be cleared
+	 */
 	public void clear() {
 		logger.info("cacheMap  before clear operation: " + cacheMap);
 		logger.info("sortingList before clear operation: " + sortingList);

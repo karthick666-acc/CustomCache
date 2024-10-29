@@ -27,11 +27,17 @@ public class AppConfig {
         return dataSourceBuilder.build();
     }
   
+	/**
+	 * @return JdbcTemplate for h2 database
+	 */
 	@Bean
    public JdbcTemplate h2JdbcTemplate(){
        return new JdbcTemplate(h2DataSource());
    }
 	
+	/**
+	 * @return Bean of Internal Cache
+	 */
 	@Bean
 	 public InternalCache internalCache(){
 	       return new InternalCache(300);

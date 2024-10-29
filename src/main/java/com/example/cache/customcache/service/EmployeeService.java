@@ -22,6 +22,12 @@ public class EmployeeService {
 	@Autowired
 	InternalCache internalCache;
 	
+	/**
+	 * 
+	 * @param employeeEntity
+	 * @return EmployeeEntity
+	 * @throws CustomException
+	 */
 	public EmployeeEntity getEmployee(EmployeeEntity employeeEntity) throws CustomException {
 		EmployeeEntity employee = null;
 		

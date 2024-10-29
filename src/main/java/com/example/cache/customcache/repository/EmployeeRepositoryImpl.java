@@ -25,6 +25,10 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 		this.jdbcTemplate = h2DataSource;
 	}
 
+	/**
+	 * Retrieving Employee details from Database
+	 *
+	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public EmployeeEntity getEmployee(int empId) {
@@ -34,6 +38,10 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 			   return jdbcTemplate.queryForObject(sql,new Object[]{empId},new EmployeeRowMapper());
 	}
 
+	/**
+	 * Adding Employee details from Database
+	 *
+	 */
 	@Override
 	public int addEmployee(EmployeeEntity entity) {
 		String sql = " INSERT into employee(id, name, emp_nbr, level, designation) "+
@@ -42,13 +50,22 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 				   entity.getEmpLevel(),
 				   entity.getEmpdesignation());
 	}
-
+	
+	
+	/**
+	 * Removing Employee details from Database
+	 *
+	 */
 	@Override
 	public int removeEmployee(EmployeeEntity entity) {
 		String sql = " DELETE from employee Where id = ?";
 	   return jdbcTemplate.update(sql, entity.getId());
 	}
 
+	/**
+	 * Remove all Employee details from Database
+	 *
+	 */
 	@Override
 	public int removeAll() {
 		String sql = " DELETE from employee";

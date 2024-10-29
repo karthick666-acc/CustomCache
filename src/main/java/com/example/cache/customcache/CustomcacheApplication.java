@@ -20,6 +20,10 @@ public class CustomcacheApplication {
 		testCache(context);
 	}
 	
+	/**
+	 * @param context
+	 * For testing Cache
+	 */
 	public static void testCache(ConfigurableApplicationContext context) {
 		try {
 			EmployeeService employeeService = context.getBean(EmployeeService.class);
