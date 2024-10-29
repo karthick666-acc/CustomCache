@@ -57,7 +57,7 @@ public class CustomcacheApplication {
 			employeeService.getEmployee(new EmployeeEntity( "Karthick", 44));
 			
 		}catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.info("",e.getCause());
 		}
 		
 		

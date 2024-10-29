@@ -26,6 +26,7 @@ public class EmployeeService {
 		EmployeeEntity employee = null;
 		
 		try {
+			//employeeEntity.setId(employeeEntity.hashCode());
 			employee = internalCache.get(employeeEntity.getId());
 			if(employee == null) {
 				employee = empRepository.getEmployee(employeeEntity.getId());
@@ -44,7 +45,7 @@ public class EmployeeService {
 	public int addEmployee(EmployeeEntity employeeEntity) throws CustomException {
 		int status;
 		try {
-			employeeEntity.setId(employeeEntity.hashCode());
+			//employeeEntity.setId(employeeEntity.hashCode());
 			internalCache.put(employeeEntity.getId(), employeeEntity);
 			status = empRepository.addEmployee(employeeEntity);
 		}catch (Exception e) {

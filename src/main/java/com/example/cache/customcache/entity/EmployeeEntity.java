@@ -33,7 +33,7 @@ public class EmployeeEntity {
 	}
 	
 	public int getId() {
-		return id;
+		return this.hashCode();
 	}	
 	
 	public void setId(int id) {

@@ -24,7 +24,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 	@SuppressWarnings("deprecation")
 	@Override
 	public EmployeeEntity getEmployee(int empId) {
-			   String sql = " SELECT id, name, emp_nbr, level, designation  FROM employee Where"+ 
+			   String sql = " SELECT id, name, emp_nbr, level, designation  FROM employee Where "+ 
 			           		"id = ?";
 			   return jdbcTemplate.queryForObject(sql,new Object[]{empId},new EmployeeRowMapper());
 	}
@@ -32,7 +32,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 	@Override
 	public int addEmployee(EmployeeEntity entity) {
 		String sql = " INSERT into employee(id, name, emp_nbr, level, designation) "+
-					 " VALUES (?,?,?) ";
+					 " VALUES (?,?,?,?,?) ";
 		   return jdbcTemplate.update(sql, entity.getId(), entity.getEmpName(), entity.getEmpNbr(),				   
 				   entity.getEmpLevel(),
 				   entity.getEmpdesignation());
