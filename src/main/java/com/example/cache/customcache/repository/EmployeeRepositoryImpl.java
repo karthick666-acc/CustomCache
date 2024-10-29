@@ -4,27 +4,29 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.example.cache.customcache.entity.EmployeeEntity;
 import com.example.cache.customcache.utils.EmployeeRowMapper;
 
+@Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository{
 	
 	
 	private final JdbcTemplate jdbcTemplate;	
 	
 	@Autowired
-	public EmployeeRepositoryImpl(JdbcTemplate jdbcTemplate) {
+	public EmployeeRepositoryImpl(JdbcTemplate h2DataSource) {
 		super();
-		this.jdbcTemplate = jdbcTemplate;
+		this.jdbcTemplate = h2DataSource;
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<EmployeeEntity> getEmployee(int empId) {
+	public EmployeeEntity getEmployee(int empId) {
 			   String sql = " SELECT id, name, emp_nbr, level, designation  FROM employee Where"+ 
 			           		"id = ?";
-			   return jdbcTemplate.query(sql,new Object[]{empId},new EmployeeRowMapper());
+			   return jdbcTemplate.queryForObject(sql,new Object[]{empId},new EmployeeRowMapper());
 	}
 
 	@Override
