@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.example.cache.customcache.entity.EmployeeEntity;
+import com.example.cache.customcache.exception.CustomException;
 import com.example.cache.customcache.service.EmployeeService;
 
 public class InternalCache {
@@ -31,7 +32,7 @@ public class InternalCache {
 	 * @param employeeEntity
 	 * @throws CustomException
 	 */
-	public void put(int key, EmployeeEntity employeeEntity) throws CustomException {
+	public void put(int key, EmployeeEntity employeeEntity) throws Exception {
 		// Updating Existing key
 
 		logger.info("cacheMap  Before put operation: " + cacheMap);
@@ -53,7 +54,7 @@ public class InternalCache {
 			sortingList.addFirst(key);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw new CustomException("Put Function failed", e);
+			throw e;
 		}
 
 		logger.info("cacheMap  After put operation: " + cacheMap);
@@ -67,7 +68,7 @@ public class InternalCache {
 	 * @return EmployeeEntity
 	 * @throws CustomException
 	 */
-	public EmployeeEntity get(int key) throws CustomException {
+	public EmployeeEntity get(int key) throws Exception {
 
 		logger.info("cacheMap  Before get operation: " + cacheMap);
 		logger.info("sortingList Before get operation: " + sortingList);
@@ -80,7 +81,7 @@ public class InternalCache {
 			sortingList.addFirst(key);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw new CustomException("Get Function failed", e);
+			throw e;
 		}
 		logger.info("cacheMap  after get operation: " + cacheMap);
 		logger.info("sortingList after get operation: " + sortingList);
@@ -106,7 +107,7 @@ public class InternalCache {
 	}
 
 	/**
-	 * Map and List will be cleared
+	 * Map and List will be cleared here
 	 */
 	public void clear() {
 		logger.info("cacheMap  before clear operation: " + cacheMap);

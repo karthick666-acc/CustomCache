@@ -17,7 +17,7 @@ public class CustomcacheApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(CustomcacheApplication.class, args);
 		logger.info("Application started");
-		testCache(context);
+		//testCache(context);
 	}
 	
 	/**

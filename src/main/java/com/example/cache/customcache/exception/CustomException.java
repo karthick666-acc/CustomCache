@@ -1,4 +1,4 @@
-package com.example.cache.customcache.utils;
+package com.example.cache.customcache.exception;
 
 public class CustomException extends Exception {
     public CustomException () {
