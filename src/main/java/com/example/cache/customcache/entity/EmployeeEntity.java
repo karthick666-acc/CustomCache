@@ -1,6 +1,11 @@
 package com.example.cache.customcache.entity;
 
-public class EmployeeEntity {
+import java.io.Serializable;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class EmployeeEntity implements Serializable {
 	
 	private int id;
 	private String empName;
@@ -9,10 +14,17 @@ public class EmployeeEntity {
 	private String empdesignation;
 	
 	
+	
+	
+	public EmployeeEntity() {
+		super();
+	}
+
 	public EmployeeEntity( String empName, int empNbr) {
 		super();
 		this.empName = empName;
 		this.empNbr = empNbr;
+		//this.id = this.hashCode();
 	}
 	
 	public EmployeeEntity( String empName, int empNbr, int empLevel, String empdesignation) {
@@ -21,6 +33,7 @@ public class EmployeeEntity {
 		this.empNbr = empNbr;
 		this.empLevel = empLevel;
 		this.empdesignation = empdesignation;
+		//this.id = this.hashCode();
 	}
 			
 	public EmployeeEntity(int id, String empName, int empNbr, int empLevel, String empdesignation) {
@@ -30,6 +43,7 @@ public class EmployeeEntity {
 		this.empNbr = empNbr;
 		this.empLevel = empLevel;
 		this.empdesignation = empdesignation;
+		//this.id = this.hashCode();
 	}
 	
 	public int getId() {
@@ -71,6 +85,7 @@ public class EmployeeEntity {
         int result = 17;
         result = result * 31 + this.empNbr;
         result = 31 * result + (this.empName != null ? this.empName.hashCode() : 0);
+        this.id = result;
         return result;
     }
     // Override equals method for the HashMap key comparison

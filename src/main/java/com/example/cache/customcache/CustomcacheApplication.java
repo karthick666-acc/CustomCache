@@ -8,6 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import com.example.cache.customcache.entity.EmployeeEntity;
 import com.example.cache.customcache.service.EmployeeService;
+import com.example.cache.customcache.service.EmployeeServiceImpl;
 
 @SpringBootApplication
 public class CustomcacheApplication {
@@ -17,7 +18,7 @@ public class CustomcacheApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(CustomcacheApplication.class, args);
 		logger.info("Application started");
-		//testCache(context);
+		testCache(context);
 	}
 	
 	/**
@@ -26,7 +27,7 @@ public class CustomcacheApplication {
 	 */
 	public static void testCache(ConfigurableApplicationContext context) {
 		try {
-			EmployeeService employeeService = context.getBean(EmployeeService.class);
+			EmployeeServiceImpl employeeService = context.getBean(EmployeeServiceImpl.class);
 			
 			logger.info("Employee has been Added");
 			
@@ -34,27 +35,33 @@ public class CustomcacheApplication {
 			
 			employeeService.addEmployee(new EmployeeEntity( "Raj", 45, 7, "Assoc Mgr"));
 			
-			logger.info("Retrieving Employee details");
 			
-			EmployeeEntity entity = employeeService.getEmployee(new EmployeeEntity( "Karthick", 44));
-			
-			logger.info(entity.toString());
-			
-			logger.info("Removing Employee details");
-			
-			employeeService.removeEmployee(new EmployeeEntity( "Karthick", 44));
-			
-			logger.info("Remove all Employee details");
-			
-			employeeService.removeAll();
-			
-			employeeService.addEmployee(new EmployeeEntity( "Karthick", 44, 7, "Assoc Mgr"));
-			
-			employeeService.addEmployee(new EmployeeEntity( "Raj", 45, 7, "Assoc Mgr"));
-			
-			logger.info("Clearing cache");
-			
-			employeeService.clearCache();			
+			  logger.info("Retrieving Employee details");
+			  
+			  EmployeeEntity entity = employeeService.getEmployee(new EmployeeEntity(
+			  "Karthick", 44));
+			  
+			  logger.info(entity.toString());
+			  
+				/*
+				 * logger.info("Removing Employee details");
+				 * 
+				 * employeeService.removeEmployee(new EmployeeEntity( "Karthick", 44));
+				 * 
+				 * logger.info("Remove all Employee details");
+				 * 
+				 * employeeService.removeAll();
+				 * 
+				 * employeeService.addEmployee(new EmployeeEntity( "Karthick", 44, 7,
+				 * "Assoc Mgr"));
+				 * 
+				 * employeeService.addEmployee(new EmployeeEntity( "Raj", 45, 7, "Assoc Mgr"));
+				 * 
+				 * logger.info("Clearing cache");
+				 * 
+				 * 
+				 * employeeService.clearCache();
+				 */		
 			
 		}catch (Exception e) {
 			logger.info("",e.getCause());

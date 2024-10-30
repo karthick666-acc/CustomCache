@@ -11,11 +11,11 @@ public class EmployeeRowMapper implements RowMapper<EmployeeEntity> {
 	   @Override
 	   public EmployeeEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
 	       return new EmployeeEntity(
-	               rs.getInt("id"),
-	               rs.getString("name"),
-	               rs.getInt("emp_nbr"),
-	               rs.getInt("level"),
-	               rs.getString("designation")
+	               rs.getInt(1),
+	               rs.getString(2),
+	               rs.getInt(3),
+	               rs.getInt(4),
+	               rs.getString(5)
 	               
 	       );
 	   }

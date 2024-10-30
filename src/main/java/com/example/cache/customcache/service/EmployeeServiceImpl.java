@@ -35,12 +35,18 @@ public class EmployeeServiceImpl  {
 		
 		try {
 			//employeeEntity.setId(employeeEntity.hashCode());
-			employee = internalCache.get(employeeEntity.getId());
+			//employee = internalCache.get(employeeEntity.getId());
 			if(employee == null) {
 				employee = empRepository.getEmployee(employeeEntity.getId());
-				internalCache.put(employeeEntity.getId(), employeeEntity);
+				if(employee!= null) {
+					internalCache.put(employeeEntity.getId(), employeeEntity);
+				}else {
+					throw new EmployeeRetrieveException("Employee data not found");
+				}
+				
 			}
 		}catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new EmployeeRetrieveException("Failed to retrieve Employee", e);
 		}
 		
@@ -63,6 +69,7 @@ public class EmployeeServiceImpl  {
 			internalCache.put(employeeEntity.getId(), employeeEntity);
 			status = empRepository.addEmployee(employeeEntity);
 		}catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new EmployeeAddException("Failed to add Employee", e);
 		}
 		logger.info(" addEmployee status : "+status);
@@ -83,6 +90,7 @@ public class EmployeeServiceImpl  {
 			internalCache.remove(employeeEntity.getId());
 			status = empRepository.removeEmployee(employeeEntity);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new EmployeeDeleteException("Failed to delete Employee", e);
 		}
 		logger.info(" removeEmployee status : "+status);
@@ -101,6 +109,7 @@ public class EmployeeServiceImpl  {
 			internalCache.clear();
 			status = empRepository.removeAll();
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new EmployeeDeleteException("Failed to delete Employees", e);
 		}
 		logger.info(" removeAll status : "+status);
@@ -116,6 +125,7 @@ public class EmployeeServiceImpl  {
 		try {
 			internalCache.clear();
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new EmployeeDeleteException("Failed to clear cache", e);
 		}
 		logger.info(" clearCache is performed");

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.CollectionUtils;
 
 import com.example.cache.customcache.entity.EmployeeEntity;
 import com.example.cache.customcache.service.EmployeeService;
@@ -32,10 +33,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 	@SuppressWarnings("deprecation")
 	@Override
 	public EmployeeEntity getEmployee(int empId) {
-		logger.info("empId ", empId);
-			   String sql = " SELECT id, name, emp_nbr, level, designation  FROM employee Where "+ 
-			           		"id = ?";
-			   return jdbcTemplate.queryForObject(sql,new Object[]{empId},new EmployeeRowMapper());
+		logger.info("empId "+empId);
+			   String sql = " SELECT id, name, emp_nbr, level, designation  FROM employee Where id = ?";
+			   List<EmployeeEntity> entities = jdbcTemplate.query(sql,new EmployeeRowMapper(), empId);
+			   
+			   return CollectionUtils.isEmpty(entities) ? null : entities.get(0);
 	}
 
 	/**

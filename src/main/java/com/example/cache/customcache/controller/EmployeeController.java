@@ -25,6 +25,13 @@ public class EmployeeController {
 	@Autowired
 	EmployeeServiceImpl employeeService;
 
+	/**
+	 * Fetch employee details 
+	 * @param empName
+	 * @param empNbr
+	 * @return ResponseEntity
+	 * @throws EmployeeRetrieveException
+	 */
 	@GetMapping("/employee/get")
 	public ResponseEntity<Object> getEmployee(@RequestParam(name = "name") String empName,
 			@RequestParam(name = "nbr") int empNbr) throws EmployeeRetrieveException {
@@ -35,9 +42,9 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/employee/add")
-	public ResponseEntity<Object> addEmployee(@RequestBody EmployeeEntity entity) throws EmployeeAddException {
+	public ResponseEntity<EmployeeEntity> addEmployee(@RequestBody EmployeeEntity entity) throws EmployeeAddException {
 		int status = employeeService.addEmployee(entity);
-		return new ResponseEntity<Object>(entity, HttpStatus.CREATED);
+		return new ResponseEntity<EmployeeEntity>(entity, HttpStatus.CREATED);
 
 	}
 
