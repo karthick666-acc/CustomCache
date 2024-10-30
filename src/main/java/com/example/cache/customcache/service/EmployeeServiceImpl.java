@@ -35,7 +35,7 @@ public class EmployeeServiceImpl  {
 		
 		try {
 			//employeeEntity.setId(employeeEntity.hashCode());
-			//employee = internalCache.get(employeeEntity.getId());
+			employee = internalCache.get(employeeEntity.getId());
 			if(employee == null) {
 				employee = empRepository.getEmployee(employeeEntity.getId());
 				if(employee!= null) {
