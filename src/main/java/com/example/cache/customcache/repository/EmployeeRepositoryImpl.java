@@ -48,7 +48,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 	public int addEmployee(EmployeeEntity entity) {
 		String sql = " INSERT into employee(id, name, emp_nbr, level, designation) "+
 					 " VALUES (?,?,?,?,?) ";
-		   return jdbcTemplate.update(sql, entity.getId(), entity.getEmpName(), entity.getEmpNbr(),				   
+		   return jdbcTemplate.update(sql, entity.getId(), entity.getEmpName(), entity.getEmpAge(),				   
 				   entity.getEmpLevel(),
 				   entity.getEmpdesignation());
 	}

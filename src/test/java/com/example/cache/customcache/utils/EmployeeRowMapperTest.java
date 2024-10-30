@@ -35,7 +35,7 @@ class EmployeeRowMapperTest {
         assertEquals("String", actualMapRowResult.getEmpdesignation());
         assertEquals(1, actualMapRowResult.getId());
         assertEquals(1, actualMapRowResult.getEmpLevel());
-        assertEquals(1, actualMapRowResult.getEmpNbr());
+        assertEquals(1, actualMapRowResult.getEmpAge());
     }
 
     @Test

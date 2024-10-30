@@ -93,13 +93,13 @@ class EmployeeEntityTest {
         EmployeeEntity actualEmployeeEntity = new EmployeeEntity(1, "Emp Name", 1, 1, "Empdesignation");
         actualEmployeeEntity.setEmpLevel(1);
         actualEmployeeEntity.setEmpName("Emp Name");
-        actualEmployeeEntity.setEmpNbr(1);
+        actualEmployeeEntity.setEmpAge(1);
         actualEmployeeEntity.setEmpdesignation("Empdesignation");
         actualEmployeeEntity.setId(1);
         String actualToStringResult = actualEmployeeEntity.toString();
         int actualEmpLevel = actualEmployeeEntity.getEmpLevel();
         String actualEmpName = actualEmployeeEntity.getEmpName();
-        int actualEmpNbr = actualEmployeeEntity.getEmpNbr();
+        int actualEmpNbr = actualEmployeeEntity.getEmpAge();
 
         // Assert that nothing has changed
         assertEquals("Emp Name", actualEmpName);
@@ -116,13 +116,13 @@ class EmployeeEntityTest {
         EmployeeEntity actualEmployeeEntity = new EmployeeEntity("Emp Name", 1);
         actualEmployeeEntity.setEmpLevel(1);
         actualEmployeeEntity.setEmpName("Emp Name");
-        actualEmployeeEntity.setEmpNbr(1);
+        actualEmployeeEntity.setEmpAge(1);
         actualEmployeeEntity.setEmpdesignation("Empdesignation");
         actualEmployeeEntity.setId(1);
         String actualToStringResult = actualEmployeeEntity.toString();
         int actualEmpLevel = actualEmployeeEntity.getEmpLevel();
         String actualEmpName = actualEmployeeEntity.getEmpName();
-        int actualEmpNbr = actualEmployeeEntity.getEmpNbr();
+        int actualEmpNbr = actualEmployeeEntity.getEmpAge();
 
         // Assert that nothing has changed
         assertEquals("Emp Name", actualEmpName);
@@ -139,13 +139,13 @@ class EmployeeEntityTest {
         EmployeeEntity actualEmployeeEntity = new EmployeeEntity("Emp Name", 1, 1, "Empdesignation");
         actualEmployeeEntity.setEmpLevel(1);
         actualEmployeeEntity.setEmpName("Emp Name");
-        actualEmployeeEntity.setEmpNbr(1);
+        actualEmployeeEntity.setEmpAge(1);
         actualEmployeeEntity.setEmpdesignation("Empdesignation");
         actualEmployeeEntity.setId(1);
         String actualToStringResult = actualEmployeeEntity.toString();
         int actualEmpLevel = actualEmployeeEntity.getEmpLevel();
         String actualEmpName = actualEmployeeEntity.getEmpName();
-        int actualEmpNbr = actualEmployeeEntity.getEmpNbr();
+        int actualEmpNbr = actualEmployeeEntity.getEmpAge();
 
         // Assert that nothing has changed
         assertEquals("Emp Name", actualEmpName);
