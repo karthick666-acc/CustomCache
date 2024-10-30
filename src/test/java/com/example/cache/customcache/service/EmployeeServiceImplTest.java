@@ -56,7 +56,7 @@ class EmployeeServiceImplTest {
     @Test
     void testGetEmployee2() throws Exception {
         // Arrange
-        when(internalCache.get(anyInt())).thenThrow(new EmployeeDeleteException("An error occurred"));
+        when(internalCache.get(anyInt())).thenThrow(new EmployeeRetrieveException("An error occurred"));
 
         // Act and Assert
         assertThrows(EmployeeRetrieveException.class,
